@@ -11,27 +11,7 @@ var gameUtil = {
     var arr = ['+', '-', '×'];
     return arr[index]
   },
-  prepareQuestion: function(that) {
-    var pa = gameUtil.getRandom(1, 100);
-    var pb = gameUtil.getRandom(1, 100);
-    var op = gameUtil.getOperator();
-    var ta = gameUtil.calculateResult(op, pa, pb);
-    var result = {
-      ParamA: pa,
-      ParamB: pb,
-      Operator: op,
-      AnswerStatus: 0,
-      TrueAnswer: ta,
-      time: gameUtil.config.countDownMax,
-      CountDown: gameUtil.config.countDownMax,
-      AnswerOptions: gameUtil.prepareOptions(ta),
-    };
-    that.setData(result);
-    if (that.data.Timer != null) {
-      gameUtil.cleanData(that);
-    }
-  },
-  prepareOptions: function(result) {
+  prepareOptions: function (result) {
     var options = [result];
     for (var i = 1; i <= 3; i++) {
       var option = gameUtil.setAnswerOption(options, result);
@@ -40,7 +20,7 @@ var gameUtil = {
     options.sort(gameUtil.randomsort);
     return options;
   },
-  setAnswerOption: function(optionsArr, target) {
+  setAnswerOption: function (optionsArr, target) {
     var result = target;
     var options = optionsArr;
     var resultAbs = Math.abs(result);
@@ -67,10 +47,10 @@ var gameUtil = {
       return option;
     }
   },
-  randomsort: function(a, b) {
+  randomsort: function (a, b) {
     return Math.random() > .5 ? -1 : 1;
   },
-  calculateResult: function(Operator, ParamA, ParamB) {
+  calculateResult: function (Operator, ParamA, ParamB) {
     var result = 0;
     switch (Operator) {
       case '+':
@@ -88,6 +68,26 @@ var gameUtil = {
     }
     return result;
   },
+  prepareQuestion: function(that) {
+    var pa = gameUtil.getRandom(1, 100);
+    var pb = gameUtil.getRandom(1, 100);
+    var op = gameUtil.getOperator();
+    var ta = gameUtil.calculateResult(op, pa, pb);
+    var result = {
+      ParamA: pa,
+      ParamB: pb,
+      Operator: op,
+      AnswerStatus: 0,
+      TrueAnswer: ta,
+      time: gameUtil.config.countDownMax,
+      CountDown: gameUtil.config.countDownMax,
+      AnswerOptions: gameUtil.prepareOptions(ta),
+    };
+    that.setData(result);
+    if (that.data.Timer != null) {
+      gameUtil.stopCountDown(that);
+    }
+  },
   startCountDown: function(that) {
     //var time = gameUtil.config.countDownMax;
     var time = that.data.time;
@@ -99,19 +99,20 @@ var gameUtil = {
       });
       console.log(time);
       if (time == 10) {
-        gameUtil.cleanData(that);
-        gameUtil.prepareData(that);
+        wx.redirectTo({
+          url: './game',
+          success: function() {
+            gameUtil.stopCountDown(that);
+          }
+        })
       }
     }, 1000);
-  },
-  pauseCountDown: function(that) {
-
   },
   prepareData: function(that) {
     gameUtil.prepareQuestion(that);
     gameUtil.startCountDown(that);
   },
-  cleanData: function(that) {
+  stopCountDown: function(that) {
     clearInterval(that.data.Timer);
   }
 }
@@ -120,6 +121,6 @@ module.exports = {
   config: gameUtil.config,
   prepareData: gameUtil.prepareData,
   prepareQuestion: gameUtil.prepareQuestion,
-  cleanData: gameUtil.cleanData,
+  stopCountDown: gameUtil.stopCountDown,
   startCountDown: gameUtil.startCountDown
 }

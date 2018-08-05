@@ -19,11 +19,11 @@ Page({
   //redirectTo or navigatBack
   onUnload: function() {
     var that = this;
-    gameUtils.cleanData(that);
+    gameUtils.stopCountDown(that);
   },
   onHide: function() {
     var that = this;
-    gameUtils.cleanData(that);
+    gameUtils.stopCountDown(that);
   },
   onShow: function() {
     var that = this;
@@ -40,7 +40,12 @@ Page({
         duration: 1000,
         mask: true
       });
-      gameUtils.prepareData(that);
+      wx.redirectTo({
+        url: './game',
+        success: function () {
+          gameUtils.stopCountDown(that);
+        }
+      })
     } else {
       this.setData({
         AnswerStatus: 2
@@ -48,7 +53,9 @@ Page({
     }
   },
   getNextQuestion: function() {
-    //gameUtils.prepareData(this);
+    wx.navigateBack({
+      
+    });
   }
  
 

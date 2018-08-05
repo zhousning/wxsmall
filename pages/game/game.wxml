@@ -18,6 +18,6 @@
   <text wx:else>答案不正确</text>
 </view>
 <view class='game-next-ctn'>
-<button class='btn-game-next' type='primary' bindtap='getNextQuestion'>不会，下一个</button>
+<button class='btn-game-next' type='primary' bindtap='getNextQuestion'>不玩了</button>
 </view>
 </view>
