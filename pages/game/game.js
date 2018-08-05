@@ -1,4 +1,4 @@
-const gameUtils = require('./game-utils.js')
+const gameUtils = require('./game-utils.js');
 
 Page({
   data: {
@@ -27,30 +27,36 @@ Page({
   },
   onShow: function() {
     var that = this;
-    gameUtils.startCountDown(that);
+    //gameUtils.startCountDown(that);
   },
   checkAnswer: function(e) {
     var that = this;
     var trueAnswer = e.currentTarget.dataset.trueAnswer;
     var answerOption = e.currentTarget.dataset.answerOption;
+    var index = e.currentTarget.dataset.answerIndex;
+    var active = 'active' + index;
+
+    that.setData({
+      active: index
+    })
     if (trueAnswer == answerOption) {
-      wx.showToast({
-        title: '成功',
-        icon: 'succes',
-        duration: 1000,
-        mask: true
-      });
+
+    } else {
+
+    }
+    setTimeout(function () {
+      that.setData({
+        active: -1
+      })
+    }, 1000);
+    setTimeout(function () {
       wx.redirectTo({
         url: './game',
         success: function () {
           gameUtils.stopCountDown(that);
         }
       })
-    } else {
-      this.setData({
-        AnswerStatus: 2
-      })
-    }
+    }, 4000);
   },
   getNextQuestion: function() {
     wx.navigateBack({

@@ -99,12 +99,17 @@ var gameUtil = {
       });
       console.log(time);
       if (time == 10) {
-        wx.redirectTo({
-          url: './game',
-          success: function() {
-            gameUtil.stopCountDown(that);
-          }
-        })
+        that.setData({
+          active: -1
+        });
+        setTimeout(function(){
+          wx.redirectTo({
+            url: './game',
+            success: function () {
+              gameUtil.stopCountDown(that);
+            }
+          });
+        }, 4000);
       }
     }, 1000);
   },
@@ -117,10 +122,4 @@ var gameUtil = {
   }
 }
 
-module.exports = {
-  config: gameUtil.config,
-  prepareData: gameUtil.prepareData,
-  prepareQuestion: gameUtil.prepareQuestion,
-  stopCountDown: gameUtil.stopCountDown,
-  startCountDown: gameUtil.startCountDown
-}
+module.exports = gameUtil;

@@ -1,22 +1,28 @@
 <view class='container'>
 <view class='game-countdown-ctn'>
-<text>00:{{CountDown}}</text>
+<text>00:{{CountDown}}</text> 
 </view>
 <view class='game-question-ctn'>
   <text>{{ParamA}}{{Operator}}{{ParamB}}</text>
 </view>
 <view class='game-answer-ctn'>
   <block wx:for='{{AnswerOptions}}'>
-    <view class='game-answer-option' data-true-answer='{{TrueAnswer}}' data-answer-option='{{item}}' bindtap='checkAnswer'>
-    <text>{{item}}</text>
-    </view>
+      <view class='game-option-ctn'>
+        <view class="game-answer-option game-option-front {{ active == index || active == -1  ? 'game-option-front-active' : '' }}"  data-answer-index='{{index}}' data-true-answer='{{TrueAnswer}}' data-answer-option='{{item}}' bindtap='checkAnswer'>
+          <text>{{item}}</text>
+        </view>
+        <view class="game-answer-option game-option-opposite {{ active == index || active == -1 ? 'game-option-opposite-active' : '' }}" data-true-answer='{{TrueAnswer}}' data-answer-option='{{item}}'>
+          <text wx:if='{{TrueAnswer == item}}'>正确</text>
+          <text wx:else>错误</text>
+        </view>
+      </view>
   </block>
 </view>
-<view class='game-answer-status'>
+<!--<view class='game-answer-status'>
   <text wx:if='{{AnswerStatus == 0}}'>请开始答题</text>
   <text wx:elif='{{AnswerStatus == 1}}'>恭喜答对啦</text>
   <text wx:else>答案不正确</text>
-</view>
+</view>-->
 <view class='game-next-ctn'>
 <button class='btn-game-next' type='primary' bindtap='getNextQuestion'>不玩了</button>
 </view>

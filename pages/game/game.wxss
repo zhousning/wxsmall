@@ -10,15 +10,41 @@
   flex-flow: row wrap;
   border: 1px solid red;
   width: 100%;
-  padding: 10rpx;
   justify-content: space-around;
-  align-content: space-around; 
+  align-content: space-around;
+}
+.game-option-ctn {
+   width: 45%;
+ height: 200rpx;
+   position: relative;
+  perspective: 1000px;
 }
 .game-answer-option{
+    width: inherit;
+  height: inherit;
  border: 1px solid;
- width: 45%;
- height: width;
- margin: 10rpx;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition: 1s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.game-option-front {
+  background-color: red;
+}
+.game-option-opposite{
+   position: absolute;
+  background-color: green;
+  left: 0;
+  top: 0;
+    transform: rotateY(180deg);
+}
+.game-option-front-active {
+  transform: rotateY(180deg);
+}
+.game-option-opposite-active {
+  transform: rotateY(0deg);
 }
 .game-answer-status{
   flex-grow: 1;
