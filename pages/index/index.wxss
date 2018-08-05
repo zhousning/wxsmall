@@ -1,0 +1,14 @@
+.index-userinfo-container{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  margin: 20rpx;
+}
+.index-userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+.index-operate-container{
+
+}

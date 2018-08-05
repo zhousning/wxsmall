@@ -1,0 +1,25 @@
+.game-countdown-ctn{
+  flex-grow: 1;
+}
+.game-question-ctn{
+  flex-grow: 1;
+}
+.game-answer-ctn{
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid red;
+  width: 100%;
+  padding: 10rpx;
+  justify-content: space-around;
+  align-content: space-around; 
+}
+.game-answer-option{
+ border: 1px solid;
+ width: 45%;
+ height: width;
+ margin: 10rpx;
+}
+.game-answer-status{
+  flex-grow: 1;
+}

@@ -1,0 +1,12 @@
+<view class='container'>
+  <view class='index-userinfo-container'>
+   <button wx:if='{{!hasUserInfo && canIUse}}' open-type="getUserInfo" bindgetuserinfo='getUserInfo'>click me</button>
+   <block wx:else>
+      <image src='{{userInfo.avatarUrl}}' class='index-userinfo-avatar' mode='cover'></image>
+      <text class='index-userInfo-nickName'>{{userInfo.nickName}}</text>
+   </block>
+  </view>
+  <view class='index-operate-container'>
+    <button type='primary' bindtap='startGame'>开始游戏</button>
+  </view>
+</view>
