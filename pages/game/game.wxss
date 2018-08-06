@@ -1,10 +1,17 @@
-.game-countdown-ctn{
+.game-countdown-ctn {
   flex-grow: 1;
+  width: 100%;
 }
-.game-question-ctn{
+
+.game-question-ctn {
   flex-grow: 1;
+  display:flex;
+  width: 100%;
+  align-items:center;
+  justify-content:center;
 }
-.game-answer-ctn{
+
+.game-answer-ctn {
   flex-grow: 1;
   display: flex;
   flex-flow: row wrap;
@@ -13,39 +20,45 @@
   justify-content: space-around;
   align-content: space-around;
 }
+
 .game-option-ctn {
-   width: 45%;
- height: 200rpx;
-   position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  position: relative;
   perspective: 1000px;
 }
-.game-answer-option{
-    width: inherit;
-  height: inherit;
- border: 1px solid;
- display: flex;
- justify-content: center;
- align-items: center;
- transition: 1s;
+
+.game-answer-option {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
+
 .game-option-front {
   background-color: red;
 }
-.game-option-opposite{
-   position: absolute;
+
+.game-option-opposite {
+  position: absolute;
   background-color: green;
   left: 0;
   top: 0;
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
+
 .game-option-front-active {
   transform: rotateY(180deg);
 }
+
 .game-option-opposite-active {
   transform: rotateY(0deg);
 }
-.game-answer-status{
+
+.game-answer-status {
   flex-grow: 1;
 }

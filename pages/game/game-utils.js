@@ -91,27 +91,28 @@ var gameUtil = {
   startCountDown: function(that) {
     //var time = gameUtil.config.countDownMax;
     var time = that.data.time;
+    var progressValue = that.data.ProgressValue;
     that.data.Timer = setInterval(function () {
       time = time - 1;
+      progressValue = progressValue + 1;
       that.data.time = time;
       that.setData({
-        CountDown: time
+        CountDown: time,
+        ProgressValue: progressValue
       });
-      console.log(time);
-      if (time == 10) {
+      console.log(progressValue);
+      if (progressValue == 100) {
+        gameUtil.stopCountDown(that);
         that.setData({
           active: -1
         });
         setTimeout(function(){
           wx.redirectTo({
-            url: './game',
-            success: function () {
-              gameUtil.stopCountDown(that);
-            }
+            url: './game'
           });
         }, 4000);
       }
-    }, 1000);
+    }, 200);
   },
   prepareData: function(that) {
     gameUtil.prepareQuestion(that);

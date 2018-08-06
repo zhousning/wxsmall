@@ -8,6 +8,7 @@ Page({
     AnswerOptions: [],
     TrueAnswer: 0,
     CountDown: 0,
+    ProgressValue: 0,
     Timer: null,
     time: gameUtils.config.countDownMax,
     AnswerStatus: 0
@@ -15,6 +16,8 @@ Page({
   onLoad: function(options) {
     var that = this;
     gameUtils.prepareQuestion(that);
+
+   
   },
   //redirectTo or navigatBack
   onUnload: function() {
@@ -27,6 +30,7 @@ Page({
   },
   onShow: function() {
     var that = this;
+    
     //gameUtils.startCountDown(that);
   },
   checkAnswer: function(e) {
